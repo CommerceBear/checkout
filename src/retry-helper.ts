@@ -63,6 +63,6 @@ export async function execute<T>(action: () => Promise<T>): Promise<T> {
   return await retryHelper.execute(action)
 }
 
-export function configure({ retries }: IGitSourceSettings) {
+export function configure({retries}: IGitSourceSettings) {
   sharedMaxAttempts = retries
 }

@@ -68,6 +68,10 @@ inputs:
       When the `ssh-key` input is not provided, SSH URLs beginning with `git@github.com:` are
       converted to HTTPS.
     default: false
+  retries:
+    description: >
+      The maximum number of retries to take when a command fails. Must be at least 1 (try once, no retries).
+    default: 3
 runs:
   using: node12
   main: dist/index.js
