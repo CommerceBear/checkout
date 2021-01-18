@@ -118,5 +118,11 @@ export function getInputs(): IGitSourceSettings {
   result.persistCredentials =
     (core.getInput('persist-credentials') || 'false').toUpperCase() === 'TRUE'
 
+  // Retries
+  result.retries = Math.floor(Number(core.getInput('retries') || '3'))
+  if (isNaN(result.retries) || result.retries <= 0) {
+    result.retries = 3
+  }
+
   return result
 }

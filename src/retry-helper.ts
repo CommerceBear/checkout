@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import {IGitSourceSettings} from './git-source-settings'
 
 const defaultMaxAttempts = 3
 const defaultMinSeconds = 10
@@ -55,7 +56,13 @@ export class RetryHelper {
   }
 }
 
+let sharedMaxAttempts = defaultMaxAttempts
+
 export async function execute<T>(action: () => Promise<T>): Promise<T> {
-  const retryHelper = new RetryHelper()
+  const retryHelper = new RetryHelper(sharedMaxAttempts)
   return await retryHelper.execute(action)
+}
+
+export function configure({ retries }: IGitSourceSettings) {
+  sharedMaxAttempts = retries
 }

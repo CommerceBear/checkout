@@ -770,7 +770,8 @@ async function setup(testName: string): Promise<void> {
     repositoryPath: '',
     sshKey: sshPath ? 'some ssh private key' : '',
     sshKnownHosts: '',
-    sshStrict: true
+    sshStrict: true,
+    retries: 3
   }
 }
 
